@@ -7,7 +7,7 @@ import { MotionPreferencesProvider } from "@/components/ui/motion-preferences";
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       <MotionPreferencesProvider>
         <CustomCursor />
         {children}

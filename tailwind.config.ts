@@ -6,12 +6,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: "var(--bg)",
-        panel: "var(--panel)",
-        ink: "var(--ink)",
-        muted: "var(--muted)",
-        accent: "var(--accent)",
-        hair: "var(--hair)",
+        bg:      "var(--bg)",
+        panel:   "var(--panel)",
+        ink:     "var(--ink)",
+        muted:   "var(--muted)",
+        accent:  "var(--accent)",
+        hair:    "var(--hair)",
+        surface: "var(--surface)",
       },
       fontFamily: {
         sans: ["var(--font-grotesk)", "system-ui", "sans-serif"],

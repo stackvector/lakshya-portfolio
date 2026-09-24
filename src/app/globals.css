@@ -2,26 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Light — architect's blueprint on paper */
+/* ── Light mode ─────────────────────────────────────── */
 :root {
-  --bg: #f2f4f7;
-  --panel: #ffffff;
-  --ink: #0b0f14;
-  --muted: #5a6675;
-  --accent: #a9640d;
-  --line: rgba(169, 100, 13, 0.11);
-  --hair: rgba(11, 15, 20, 0.11);
+  --bg:     #f0f0ed;
+  --panel:  #fafaf8;
+  --ink:    #0e0e0c;
+  --muted:  #6b6b63;
+  --accent: #b05c0a;
+  --line:   rgba(176, 92, 10, 0.09);
+  --hair:   rgba(14, 14, 12, 0.10);
+  --surface: rgba(14, 14, 12, 0.04);
 }
 
-/* Dark — blueprint on drafting-table black */
+/* ── Dark mode ───────────────────────────────────────── */
 .dark {
-  --bg: #0b0f14;
-  --panel: #10151c;
-  --ink: #e7ecf2;
-  --muted: #8792a0;
-  --accent: #e8a33d;
-  --line: rgba(232, 163, 61, 0.14);
-  --hair: rgba(231, 236, 242, 0.09);
+  --bg:     #0c0c0a;
+  --panel:  #131311;
+  --ink:    #e8e8e2;
+  --muted:  #888880;
+  --accent: #e8a03a;
+  --line:   rgba(232, 160, 58, 0.08);
+  --hair:   rgba(232, 232, 226, 0.08);
+  --surface: rgba(232, 232, 226, 0.04);
 }
 
 html {
@@ -34,25 +36,27 @@ body {
   background-image:
     linear-gradient(var(--line) 1px, transparent 1px),
     linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 48px 48px;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  background-size: 52px 52px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* ── Selection ───────────────────────────────────────── */
 ::selection {
   background: var(--accent);
   color: var(--bg);
 }
 
+/* ── Focus ───────────────────────────────────────────── */
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+  border-radius: 2px;
 }
 
+/* ── Reduced motion ──────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -60,7 +64,7 @@ button:focus-visible {
   }
 }
 
-/* Native cursor hidden only when the custom cursor is actually active */
+/* ── Custom cursor suppression ───────────────────────── */
 html[data-cursor="custom"],
 html[data-cursor="custom"] a,
 html[data-cursor="custom"] button,
@@ -70,18 +74,54 @@ html[data-cursor="custom"] [role="button"] {
   cursor: none;
 }
 
+/* ── Caret blink ─────────────────────────────────────── */
 @keyframes blink {
-  50% {
-    opacity: 0;
-  }
+  50% { opacity: 0; }
 }
 
 .caret {
   display: inline-block;
-  width: 8px;
-  height: 0.72em;
+  width: 2px;
+  height: 0.9em;
   background: var(--accent);
-  margin-left: 4px;
-  vertical-align: -1px;
+  margin-left: 3px;
+  vertical-align: -2px;
   animation: blink 1.1s steps(1) infinite;
+  border-radius: 1px;
+}
+
+/* ── Status pulse ────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.status-dot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+/* ── Horizontal rule ─────────────────────────────────── */
+.section-rule {
+  border: none;
+  border-top: 1px solid var(--hair);
+  margin: 0;
+}
+
+/* ── Gradient fade bottom of sidebar on mobile ───────── */
+@media (max-width: 767px) {
+  .sidebar-fade::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+    pointer-events: none;
+  }
 }
