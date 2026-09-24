@@ -15,12 +15,12 @@ const APPROACH = [
   {
     num: "03",
     title: "Ship for real users",
-    desc: "credBase was built to help students navigate credentials and career paths. Real constraints and real feedback change what you build and how you prioritise it.",
+    desc: "Real constraints and real feedback change what you build and how you prioritise it. credBase was built to help students navigate credentials and career paths.",
   },
   {
     num: "04",
-    title: "Keep learning deliberately",
-    desc: "Currently working through machine learning by building with it — the F1 lap time project was an excuse to do data prep, feature engineering, and model comparison properly.",
+    title: "Learn from what you ship",
+    desc: "Getting something deployed is only the beginning. Putting it in the hands of real users reveals what works, what doesn't, and what needs to change — and that feedback shapes what I build next.",
   },
 ];
 
