@@ -32,11 +32,6 @@ const STACK = [
     desc: "Deployment and production hosting for Python apps",
     chips: ["Uvicorn", "Serverless", "Cloud Hosting"],
   },
-  {
-    name: "Folium / Leaflet",
-    desc: "Interactive maps and geospatial data visualisation",
-    chips: ["OpenStreetMap", "CartoDB", "Satellite Imagery"],
-  },
 ];
 
 function Chip({ children }: { children: React.ReactNode }) {

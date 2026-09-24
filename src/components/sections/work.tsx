@@ -10,16 +10,40 @@ function Tag({ children }: { children: React.ReactNode }) {
   );
 }
 
-function ProjectLink({ href, children }: { href: string; children: React.ReactNode }) {
+function ProjectLink({
+  href,
+  children,
+  isLive = false,
+}: {
+  href: string;
+  children: React.ReactNode;
+  isLive?: boolean;
+}) {
   return (
-    <Magnetic range={50} intensity={0.3}>
+    <Magnetic range={45} intensity={0.25}>
       <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 font-mono text-[12px] text-muted uppercase tracking-wide transition-colors hover:text-accent"
+        className={
+          isLive
+            ? "group relative inline-flex items-center gap-2 border border-accent bg-accent/15 px-3.5 py-1.5 font-mono text-[12px] font-medium tracking-wider text-accent uppercase transition-all duration-200 hover:bg-accent hover:text-bg hover:shadow-[0_0_20px_rgba(232,160,58,0.4)]"
+            : "group inline-flex items-center gap-1.5 border border-hair bg-surface px-3 py-1.5 font-mono text-[12px] tracking-wider text-muted uppercase transition-all duration-200 hover:border-accent/60 hover:text-ink"
+        }
       >
-        {children} <span aria-hidden="true">↗</span>
+        {isLive && (
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+          </span>
+        )}
+        <span>{children}</span>
+        <span
+          aria-hidden="true"
+          className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        >
+          ↗
+        </span>
       </a>
     </Magnetic>
   );
@@ -45,7 +69,10 @@ const MINOR_PROJECTS = [
     sub: "A better way to navigate campus.",
     desc: "A campus-focused platform bringing interactive locations, routing, and useful campus information together into one connected experience.",
     stack: ["Python", "Flask", "SQLite", "Folium", "Leaflet"],
-    links: [{ href: "https://github.com/stackvector/Campus-Compass", label: "Source" }],
+    links: [
+      { href: "https://campus-compass-1-0tbt.onrender.com", label: "Live" },
+      { href: "https://github.com/stackvector/Campus-Compass", label: "Source" },
+    ],
   },
   {
     num: "03",
@@ -76,9 +103,13 @@ export function Work() {
               </span>
               <div className="font-mono text-[11px] tracking-wider text-muted uppercase mt-2">01 — Featured</div>
             </div>
-            <div className="flex gap-5 pt-1">
-              <ProjectLink href="https://credbase.vercel.app">Live</ProjectLink>
-              <ProjectLink href="https://github.com/stackvector/credBase">Source</ProjectLink>
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <ProjectLink href="https://credbase.vercel.app" isLive>
+                Live
+              </ProjectLink>
+              <ProjectLink href="https://github.com/stackvector/credBase">
+                Source
+              </ProjectLink>
             </div>
           </div>
 
@@ -131,9 +162,13 @@ export function Work() {
               </div>
 
               {/* Links */}
-              <div className="flex gap-5 border-t border-hair pt-5">
+              <div className="flex flex-wrap items-center gap-3 border-t border-hair pt-5">
                 {project.links.map((link) => (
-                  <ProjectLink key={link.href} href={link.href}>
+                  <ProjectLink
+                    key={link.href}
+                    href={link.href}
+                    isLive={link.label.toLowerCase() === "live"}
+                  >
                     {link.label}
                   </ProjectLink>
                 ))}
