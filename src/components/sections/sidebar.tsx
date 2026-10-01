@@ -38,7 +38,8 @@ export function Sidebar() {
 
         {/* Tagline */}
         <p className="mb-2 max-w-[210px] text-[13.5px] leading-[1.65] text-muted">
-          Developer working across software and exploring machine learning.
+          Computer Science student at SRM Institute of Science and Technology
+          building Python, backend, and AI/ML projects.
         </p>
 
         {/* Availability pill */}

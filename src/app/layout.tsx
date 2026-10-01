@@ -3,6 +3,11 @@ import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
+const SITE_URL = "https://lakshya-kumar-portfolio.vercel.app";
+const SITE_TITLE = "Lakshya Kumar | Python, Backend & AI/ML Developer";
+const SITE_DESCRIPTION =
+  "Lakshya Kumar is a Computer Science student at SRM Institute of Science and Technology building Python, backend, AI/ML, and data-driven projects.";
+
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -18,14 +23,45 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lakshya Kumar — Full-stack Developer",
-  description:
-    "Lakshya Kumar — a developer working across software development and currently exploring machine learning. Open to opportunities.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "Lakshya Kumar",
+    "Lakshya Kumar portfolio",
+    "Python developer",
+    "backend developer",
+    "AI/ML developer",
+    "Computer Science student",
+    "SRM Institute of Science and Technology",
+  ],
+  authors: [{ name: "Lakshya Kumar", url: SITE_URL }],
+  creator: "Lakshya Kumar",
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
-    title: "Lakshya Kumar — Full-stack Developer",
-    description:
-      "Transforming ideas into practical software. Open to opportunities.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Lakshya Kumar Portfolio",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 

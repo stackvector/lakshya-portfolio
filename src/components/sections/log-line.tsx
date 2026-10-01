@@ -5,8 +5,7 @@ import { useMotionPreferences } from "@/components/ui/motion-preferences";
 import { Reveal } from "@/components/ui/reveal";
 
 const LINES = [
-  "Building software across web and data.",
-  "Turning ideas into working products.",
+  "Building Python, backend, and AI/ML projects.",
 ];
 
 export function LogLine() {

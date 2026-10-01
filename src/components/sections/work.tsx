@@ -14,10 +14,12 @@ function ProjectLink({
   href,
   children,
   isLive = false,
+  ariaLabel,
 }: {
   href: string;
   children: React.ReactNode;
   isLive?: boolean;
+  ariaLabel: string;
 }) {
   return (
     <Magnetic range={45} intensity={0.25}>
@@ -25,6 +27,7 @@ function ProjectLink({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={ariaLabel}
         className={
           isLive
             ? "group relative inline-flex items-center gap-2 border border-accent bg-accent/15 px-3.5 py-1.5 font-mono text-[12px] font-medium tracking-wider text-accent uppercase transition-all duration-200 hover:bg-accent hover:text-bg hover:shadow-[0_0_20px_rgba(232,160,58,0.4)]"
@@ -104,10 +107,17 @@ export function Work() {
               <div className="font-mono text-[11px] tracking-wider text-muted uppercase mt-2">01 — Featured</div>
             </div>
             <div className="flex flex-wrap items-center gap-3 pt-1">
-              <ProjectLink href="https://credbase.vercel.app" isLive>
+              <ProjectLink
+                href="https://credbase.vercel.app"
+                isLive
+                ariaLabel="Visit the credBase live project"
+              >
                 Live
               </ProjectLink>
-              <ProjectLink href="https://github.com/stackvector/credBase">
+              <ProjectLink
+                href="https://github.com/stackvector/credBase"
+                ariaLabel="View the credBase source code on GitHub"
+              >
                 Source
               </ProjectLink>
             </div>
@@ -168,6 +178,7 @@ export function Work() {
                     key={link.href}
                     href={link.href}
                     isLive={link.label.toLowerCase() === "live"}
+                    ariaLabel={`${link.label === "Live" ? "Visit" : "View source for"} ${project.title}${link.label === "Source" ? " on GitHub" : ""}`}
                   >
                     {link.label}
                   </ProjectLink>

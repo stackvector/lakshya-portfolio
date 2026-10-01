@@ -6,9 +6,33 @@ import { Stack } from "@/components/sections/stack";
 import { Work } from "@/components/sections/work";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 
+const personStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Lakshya Kumar",
+  url: "https://lakshya-kumar-portfolio.vercel.app",
+  description:
+    "Computer Science student at SRM Institute of Science and Technology building Python, backend, AI/ML, and data-driven projects.",
+  jobTitle: "Computer Science Student and Developer",
+  affiliation: {
+    "@type": "EducationalOrganization",
+    name: "SRM Institute of Science and Technology",
+  },
+  sameAs: [
+    "https://github.com/stackvector",
+    "https://www.linkedin.com/in/lakshya-kumar-40a9a3415/",
+  ],
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personStructuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <ScrollProgress />
       <div className="grid min-h-screen grid-cols-1 md:grid-cols-[320px_1fr]">
         <Sidebar />
